@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+    Noticias
+{% endblock %}
+
+
+
+{% block contenido %}
+
+
+<h1>Noticia</h1>
+
+<ul>
+    {% for noticia in object_list %}
+
+    <li><a href="{% url 'noticia-detallada' noticia.slug %}">{{ noticia.titulo }}</a> - 
+        {{ noticia.autor.first_name }} 
+        {{ noticia.autor.last_name }} -
+        {{ noticia.fecha_publicacion }}  
+        {% if user.is_authenticated %}
+            {% if user.id == noticia.autor.id %}
+                - <a href="{% url 'update-noticia' noticia.slug %}">(Editar)</a>
+                <a href="{% url 'delete-noticia' noticia.slug %}">(Borrar)</a>
+            {% endif %}
+        {% endif %}
+        <br />
+        {{ noticia.cuerpo|slice:":100"|safe }}</li>
+
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home'  %}">Inicio</a>
+
+
+{% endblock %}

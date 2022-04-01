@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+{{ noticia.titulo }}
+{% endblock %}
+
+{% block contenido %}
+
+
+<h1> {{ noticia.titulo }}</h1>
+<small> 
+    Escrito por: {{ noticia.autor.first_name }} {{ noticia.autor.last_name }} - 
+    {{ noticia.fecha_publicacion }} 
+
+    {% if user.is_authenticated %}
+        {% if user.id == noticia.autor.id %}
+            - <a href="{% url 'update-noticia' noticia.slug %}">(Editar)</a>
+            <a href="{% url 'delete-noticia' noticia.slug %}">(Borrar)</a>
+        {% endif %}
+    {% endif %}
+
+</small>
+
+<br/>
+
+<hr>
+<br/>
+{{ noticia.cuerpo|safe }}
+
+<br/><br/>
+<small> Etiquetas: </small>
+{% for tag in noticia.tags.all %}
+| <small><a href="{% url 'etiqueta' tag.slug%}">{{ tag.slug }} </a></small>
+{% endfor %}
+<br/><br/>
+<a href="{% url 'pagina-noticias'  %}">Atrás</a>
+
+
+{% endblock %}

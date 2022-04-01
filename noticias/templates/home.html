@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+    Home
+{% endblock %}
+
+
+{% block contenido %}
+
+        
+<h1> Página de inicio </h1>
+
+<a href="{% url 'pagina-noticias'  %}">Listado de noticias</a>
+           
+{% endblock %}

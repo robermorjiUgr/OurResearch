@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+    Añadir noticia
+{% endblock %}
+
+{% block contenido %}
+
+{% if user.is_authenticated %}
+
+<h1>Añadir noticia...</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <!-- Título -->
+            <div class="col-6 form-group">
+                <label>{{ form.titulo.label_tag }} </label>
+                {{ form.titulo }}.
+            </div>
+
+            <!-- Autor -->
+            <div class="col-3 form-group">
+                <label>{{ form.autor.label_tag }} </label>
+                {{ form.autor }}
+            </div>
+
+            <!-- Tags -->
+            <div class="col-3 form-group">
+                <label>{{ form.tags.label_tag }} </label>
+                {{ form.tags }}
+            </div>
+
+            <!-- Cuerpo -->
+            <div class="form-group">
+                <label>{{ form.cuerpo.label_tag }}</label>
+                {{ form.cuerpo }}
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary">Publicar</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+{% else %}
+    <h2>Ups... ¡No deberías estar aquí!</h2>
+{% endif %}
+
+
+
+
+{% endblock %}
