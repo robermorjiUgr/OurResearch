@@ -11,33 +11,123 @@
 {% block contenido %}
 
 
-<h1> {{ noticia.titulo }}</h1>
-<small> 
-    Escrito por: {{ noticia.autor.first_name }} {{ noticia.autor.last_name }} - 
-    {{ noticia.fecha_publicacion }} 
 
-    {% if user.is_authenticated %}
-        {% if user.id == noticia.autor.id %}
-            - <a href="{% url 'update-noticia' noticia.slug %}">(Editar)</a>
-            <a href="{% url 'delete-noticia' noticia.slug %}">(Borrar)</a>
-        {% endif %}
-    {% endif %}
+<!-- Content
+		============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
 
-</small>
+					<div class="row gutter-40 col-mb-80">
+						<!-- Post Content
+						============================================= -->
+						<div class="postcontent col-lg-9">
 
-<br/>
+							<div class="single-post mb-0">
 
-<hr>
-<br/>
-{{ noticia.cuerpo|safe }}
+								<!-- Single Post
+								============================================= -->
+								<div class="entry clearfix">
 
-<br/><br/>
-<small> Etiquetas: </small>
-{% for tag in noticia.tags.all %}
-| <small><a href="{% url 'etiqueta' tag.slug%}">{{ tag.slug }} </a></small>
-{% endfor %}
-<br/><br/>
-<a href="{% url 'pagina-noticias'  %}">Atrás</a>
+									<!-- Entry Title
+									============================================= -->
+									<div class="entry-title">
+										<h1> {{ noticia.titulo }}</h1>
+									</div><!-- .entry-title end -->
+
+                                    
+
+									<!-- Entry Meta
+									============================================= -->
+									<div class="entry-meta">
+										<ul>
+											<li><i class="icon-calendar3"></i> {{ noticia.fecha_publicacion }}</li>
+											<li><a href="#"><i class="icon-user"></i>{{ noticia.autor.first_name }} {{ noticia.autor.last_name }} </a></li>
+											{% if user.is_authenticated %}
+                                                {% if user.id == noticia.autor.id %}
+                                                <li><a href="{% url 'update-noticia' noticia.slug %}"><i class="icon-edit1"></i>Editar</a></li>
+                                                <li><a href="{% url 'delete-noticia' noticia.slug %}"><i class="icon-line-trash-2"></i>Borrar</a></li>
+                                                {% endif %}
+                                            {% endif %}
+										</ul>
+									</div><!-- .entry-meta end -->
+
+									<!-- Entry Image {% static 'home/images/blog/full/1.jpg' %}
+									=============================================  -->
+									<div class="entry-image">
+										<a href="#"><img src="{{ noticia.imagen_principal.url }}" alt="Noticia detallada"></a>
+									</div>
+                                        
+									<!-- Entry Content
+									============================================= -->
+									<div class="entry-content mt-0">
+
+                                        {{ noticia.cuerpo|safe }}
+
+										<!-- Post Single - Content End -->
+                                        <div class="tagcloud clearfix bottommargin">
+
+                                        {% for tag in noticia.tags.all %}
+                                        <a href="{% url 'etiqueta' tag.slug%}">{{ tag.slug }} </a>
+                                        {% endfor %}
+										<!-- Tag Cloud
+										============================================= -->
+										
+											
+										</div><!-- .tagcloud end -->
+
+										<div class="clear"></div>
+
+										<!-- Post Single - Share
+										============================================= -->
+										<div class="si-share border-0 d-flex justify-content-between align-items-center">
+											<span>Comparte esta noticia:</span>
+											<div>
+												<a href="#" class="social-icon si-borderless si-facebook">
+													<i class="icon-facebook"></i>
+													<i class="icon-facebook"></i>
+												</a>
+												<a href="#" class="social-icon si-borderless si-twitter">
+													<i class="icon-twitter"></i>
+													<i class="icon-twitter"></i>
+												</a>
+												<a href="#" class="social-icon si-borderless si-pinterest">
+													<i class="icon-pinterest"></i>
+													<i class="icon-pinterest"></i>
+												</a>
+												<a href="#" class="social-icon si-borderless si-gplus">
+													<i class="icon-gplus"></i>
+													<i class="icon-gplus"></i>
+												</a>
+												<a href="#" class="social-icon si-borderless si-rss">
+													<i class="icon-rss"></i>
+													<i class="icon-rss"></i>
+												</a>
+												<a href="#" class="social-icon si-borderless si-email3">
+													<i class="icon-email3"></i>
+													<i class="icon-email3"></i>
+												</a>
+											</div>
+										</div><!-- Post Single - Share End -->
+
+									</div>
+								</div><!-- .entry end -->
+
+								<a href="{% url 'pagina-noticias'  %}" class="button button-border button-border-thin button-teal"><i class="icon-arrow-left2"></i>Atrás</a>
+
+                                
+								
+
+							</div>
+
+						</div><!-- .postcontent end -->
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
 
 
 {% endblock %}
+
+

@@ -9,12 +9,14 @@ Editar noticia
 
 {% block contenido %}
 
-{% if user.is_authenticated %}
-    {% if user.id == noticia.autor.id %}
+{% if user.is_authenticated %} 
+    {% if user.id == noticia.autor.id %} 
         <h1>Editar noticia...</h1>
 
         <form method="POST">
             {% csrf_token %}
+            {{ form.media }}
+            
             {{ form.as_p }}
 
             <div class="col-12">

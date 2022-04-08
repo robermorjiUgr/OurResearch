@@ -7,13 +7,16 @@ from django.template.defaultfilters import slugify
 import string, random
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
-
+from ckeditor.fields import RichTextField
 
 
 class Noticia(models.Model):
     titulo = models.CharField(max_length=255)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
-    cuerpo = models.TextField()
+    imagen_principal = models.ImageField(null=True, blank=True, upload_to ="images/")
+    #cuerpo = models.TextField()
+    fragmento = models.CharField(max_length=255)
+    cuerpo = RichTextField(blank = True, null=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     tags = TaggableManager()
     slug= models.SlugField(max_length=500, unique=True, null=True, blank=True)
