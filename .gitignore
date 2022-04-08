@@ -21,5 +21,9 @@ db.sqlite3
 /.idea/WorkSpaceCompany.iml
 /.idea/.gitignore
 /.idea/inspectionProfiles/Project_Default.xml
+
+#media
+/media/
+
 # util
 /Readme_util.md
