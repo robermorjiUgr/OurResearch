@@ -113,6 +113,41 @@
 									</div>
 								</div><!-- .entry end -->
 
+								<h4>Noticias relacionadas:</h4>
+
+								
+								<div class="related-posts row posts-md col-mb-30">
+
+								{% for relacionada in noticias_relacionadas|slice:":2" %}
+								<div class="entry col-12 col-md-6">
+									<div class="grid-inner row align-items-center gutter-20">
+										<div class="col-4">
+											<div class="entry-image">
+												<a href="#"><img src="{{ relacionada.imagen_principal.url }}" alt="Blog Single"></a>
+											</div>
+										</div>
+										<div class="col-8">
+											<div class="entry-title title-xs">
+												<h3><a href="{% url 'noticia-detallada' relacionada.slug %}">{{ relacionada.titulo }}</a></h3>
+											</div>
+											<div class="entry-meta">
+												<ul>
+													<li><i class="icon-calendar3"></i> {{ relacionada.fecha_publicacion }}</li>
+													<li><a href="blog-single.html#comments"><i class="icon-male"></i>
+														{{ noticia.autor.first_name }} 
+														{{ noticia.autor.last_name }}</a>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+
+								</div>
+
+							</br></br>
+								
+
 								<a href="{% url 'pagina-noticias'  %}" class="button button-border button-border-thin button-teal"><i class="icon-arrow-left2"></i>Atrás</a>
 
                                 
@@ -121,13 +156,69 @@
 							</div>
 
 						</div><!-- .postcontent end -->
+
+						<!-- Sidebar
+						============================================= -->
+						<div class="sidebar col-lg-3">
+							<div class="sidebar-widgets-wrap">
+
+								<div id="twitter" class="widget widget-twitter-feed clearfix">
+
+			
+									<a class="twitter-timeline" data-lang="es" data-height="600" href="https://twitter.com/CanalUGR?ref_src=twsrc^google|twcamp^serp|twgr^author">Tweets por {{noticia.autor.username}}</a> 
+									<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	
+								</div>
+
+								
+								<div class="widget clearfix">
+
+									<h4>Noticias recientes</h4>
+									{% for reciente in noticias_recientes %}
+										<div class="posts-sm row col-mb-30" id="post-list-sidebar">
+											<div class="entry col-12">
+												<div class="grid-inner row g-0">
+													<div class="col-auto">
+														<div class="entry-image">
+															<a href="#"><img src="{{ reciente.imagen_principal.url }}" alt="Image"></a>
+														</div>
+													</div>
+													<div class="col ps-3">
+														<div class="entry-title">
+															<h4><a href="{% url 'noticia-detallada' reciente.slug %}">{{ reciente.titulo|slice:":45" }}...</a></h4>
+														</div>
+														<div class="entry-meta">
+															<ul>
+																<li>{{ reciente.fecha_publicacion }}</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</br>
+									{% endfor %}
+
+								</div>
+
+							</div>
+						</div><!-- .sidebar end -->
 					</div>
 
 				</div>
 			</div>
 		</section><!-- #content end -->
 
+		
+
 
 {% endblock %}
+
+
+<!-- JavaScripts {% static 'noticias/js/plugins.min.js' %}
+	============================================= -->
+	<script src="{% static 'noticias/js/jquery.js' %}"></script>
+	<script src="{% static 'noticias/js/plugins.min.js' %}"></script>
 
 

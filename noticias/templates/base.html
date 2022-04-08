@@ -146,11 +146,11 @@
 
                             </ul>
 
-                        </nav><!-- Fin de barra de navegación -->
+                        </nav><!-- Fin de barra de navegación  -->
 
                         {% if user.is_authenticated %}
                         <div class="menu-item mega-menu">
-                            <a class="menu-link" href="">
+                            <a class="menu-link" href="{% url 'editar-perfil' %}">
                                 <div>¡Hola, {{ user.first_name }}!</div>
                             </a>
                         </div>

@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import  Noticia
 from .forms import NoticiaForm, EditarNoticiaForm
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 
 #def home(request):
 #   return render(request, 'home.html', {})
@@ -23,6 +24,13 @@ class NoticiasView(ListView):
 class NoticiaDetalladaView(DetailView):
     model = Noticia
     template_name = 'noticia_detalle.html'
+
+    def get_context_data(self, **kwargs):
+        noticias_relacionadas = self.object.tags.similar_objects()
+        context = super(NoticiaDetalladaView, self).get_context_data(**kwargs)
+        context['noticias_recientes'] = Noticia.objects.all().order_by('-fecha_publicacion')[0:4]
+        context['noticias_relacionadas'] = noticias_relacionadas
+        return context
 
 # CreateView sirve para crear vistas que crean cosas, en este caso una entrada en la BD
 class AddNoticiaView(CreateView):
