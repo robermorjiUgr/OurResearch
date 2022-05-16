@@ -42,7 +42,7 @@
 									<div class="entry-meta">
 										<ul>
 											<li><i class="icon-calendar3"></i> {{ noticia.fecha_publicacion }}</li>
-											<li><a href="#"><i class="icon-user"></i>{{ noticia.autor.first_name }} {{ noticia.autor.last_name }} </a></li>
+											<li><a href="{% url 'mostrar_perfil_usuario' noticia.autor.perfil.id  %}"><i class="icon-user"></i>{{ noticia.autor.first_name }} {{ noticia.autor.last_name }} </a></li>
 											{% if user.is_authenticated %}
                                                 {% if user.id == noticia.autor.id %}
                                                 <li><a href="{% url 'update-noticia' noticia.slug %}"><i class="icon-edit1"></i>Editar</a></li>
@@ -133,7 +133,7 @@
 											<div class="entry-meta">
 												<ul>
 													<li><i class="icon-calendar3"></i> {{ relacionada.fecha_publicacion }}</li>
-													<li><a href="blog-single.html#comments"><i class="icon-male"></i>
+													<li><a href="{% url 'mostrar_perfil_usuario' noticia.autor.perfil.id  %}"><i class="icon-male"></i>
 														{{ noticia.autor.first_name }} 
 														{{ noticia.autor.last_name }}</a>
 												</ul>

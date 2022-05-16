@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+Miembros
+{% endblock %}
+
+{% block contenido %}
+
+<div class="fancy-title title-border">
+    <h3>Nuestro equipo</h3>
+</div>
+
+<div class="row col-mb-50 mb-0">
+    {% for miembro in object_list %}
+
+        <div class="col-lg-6">
+
+            <div class="team team-list row align-items-center">
+                <div class="team-image col-sm-6">
+                    <a href="{% url 'mostrar_perfil_usuario' miembro.user.perfil.id  %}"><img src="{{ miembro.imagen_perfil.url }}" alt="{{ miembro.user.first_name }} {{ miembro.user.last_name }}"></a>
+                </div>
+                <div class="team-desc col-sm-6">
+                    <a href="{% url 'mostrar_perfil_usuario' miembro.user.perfil.id  %}">
+                        <div class="team-title"><h4>{{ miembro.user.first_name }} {{ miembro.user.last_name }}</h4>
+                    </a>
+                    <span>CEO</span></div>
+                    <div class="team-content">
+                        <p> {{ miembro.bio|slice:":200"|safe }}... </p>
+                    </div>
+                    <a href="{{ miembro.facebook_url }}" class="social-icon si-rounded si-small si-facebook">
+                        <i class="icon-facebook"></i>
+                        <i class="icon-facebook"></i>
+                    </a>
+                    <a href="{{ miembro.twitter_url }}" class="social-icon si-rounded si-small si-twitter">
+                        <i class="icon-twitter"></i>
+                        <i class="icon-twitter"></i>
+                    </a>
+                    <a href="{{ miembro.instagram_url }}" class="social-icon si-rounded si-small si-gplus">
+                        <i class="icon-instagram"></i>
+                        <i class="icon-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

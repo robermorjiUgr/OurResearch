@@ -11,11 +11,12 @@ Cambiar contraseña
 
 <h1>Editar perfil</h1>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.media }}
-    
-    {{ form.as_p }}
+    {{ perfil_form.media }}
+
+    {{ usuario_form.as_p }}
+    {{ perfil_form.as_p }}
 
     <div class="col-12">
         <button type="submit" class="btn btn-secondary">Actualizar</button>

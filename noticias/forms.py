@@ -18,8 +18,9 @@ class NoticiaForm(forms.ModelForm):
             'fragmento': forms.Textarea(attrs={'class': 'form-control', 'placeholder':'Fragmento de artículo'}),
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
         }
-    def get_success_url(self):
-        return reverse('noticia-detallada', kwargs={'slug': self.object.slug})
+
+        def get_success_url(self):
+            return reverse('noticia-detallada', kwargs={'slug': self.object.slug})
 
 class EditarNoticiaForm(forms.ModelForm):
     class Meta:
@@ -32,6 +33,8 @@ class EditarNoticiaForm(forms.ModelForm):
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
             'tags': TagWidget(),
         }
+
+        
 
    
         

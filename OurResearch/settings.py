@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'miembros',
 ]
 
+TAGGIT_CASE_INSENSITIVE = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -107,6 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_PROFILE_MODULE = "miembros.Perfil"
 
 
 # Internationalization
