@@ -99,7 +99,7 @@
                                     </a>
                                 </li>
                                 <li class="menu-item mega-menu">
-                                    <a class="menu-link" href="#">
+                                    <a class="menu-link" href="{% url 'listado-eventos' %}">
                                         <div>Eventos</div>
                                     </a>
                                 </li>
@@ -181,8 +181,15 @@
         {% endfor %}
         {% endif %}
 
+
+
         
         <!-- Fin de titulo de página -->
+
+        {% block cabeceraContenido %}
+
+
+        {% endblock %}
 
         <!-- Contenido
             ============================================= -->
@@ -377,14 +384,20 @@
         ============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>
 
-    <!-- JavaScripts  {% static 'noticias/js/functions.js' %}
+    <!-- JavaScripts  {% static 'noticias/js/jquery.countdown-fr.js' %}
         ============================================= -->
     <script src="{% static 'noticias/js/jquery.js' %}"></script>
     <script src="{% static 'noticias/js/plugins.min.js' %}"></script>
+    <script src="{% static 'noticias/js/jquery.countdown-es.js' %}"></script>
 
     <!-- Footer Scripts
         ============================================= -->
+        
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" ></script>
     <script src="{% static 'noticias/js/functions.js' %}"></script>
+
+    <!-- For Countdown {% static 'js/components/moment.js' %} -->
+    <script src="{% static 'eventos/js/components/moment.js' %}"></script>
 
 </body>
 

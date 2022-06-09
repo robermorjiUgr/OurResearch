@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+{{ evento.nombre }}
+{% endblock %}
+
+{% block cabeceraContenido %}
+<!-- Page Title
+		============================================= -->
+<section id="page-title" class="page-title-pattern">
+
+    <div class="container clearfix">
+        <h1>{{ evento.nombre }}</h1>
+        <span>{{ evento.ubicacion.nombre }}</span>
+    </div>
+
+</section><!-- #page-title end -->
+
+{% endblock %}
+
+{% block contenido %}
+
+
+
+<!-- Content
+		============================================= -->
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+
+            <div class="single-event">
+
+                <div class="row col-mb-50">
+                    <div class="col-md-8 col-lg-9">
+                        <div class="entry-image mb-0">
+                            <img src="{{ evento.imagen_evento.url }}" alt="Event Single">
+                            <div class="entry-overlay d-flex align-items-center justify-content-center">
+                                <span class="d-none d-md-flex">Empieza en: </span>
+                                <div class="countdown d-block d-md-flex" data-year="{{ evento.fecha_evento.year }}"
+                                    data-month="{{ evento.fecha_evento.month }}"
+                                    data-day="{{ evento.fecha_evento.day  }}"
+                                    data-hour="{{ evento.fecha_evento.hour  }}"
+                                    data-minute="{{ evento.fecha_evento.minute  }}"
+                                    data-second="{{ evento.fecha_evento.second  }}"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card event-meta mb-3">
+                            <div class="card-header">
+                                <h5 class="mb-0">Resumen del evento:</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="iconlist mb-0">
+                                    <li><i class="icon-calendar3"></i> {{ evento.fecha_evento.day }} / {{ evento.fecha_evento.month }} / {{ evento.fecha_evento.year }}</li>
+                                    <li><i class="icon-time"></i> {{ evento.fecha_evento|date:"h:i A" }}</li>
+                                    <li><i class="icon-map-marker2"></i> {{ evento.ubicacion.nombre }}</li>
+                                    <li><i class="icon-male"></i> Aforo: {{ evento.aforo }} asistentes</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-md-8 col-lg-9">
+
+                        <div class="fancy-title title-border title-center">
+                            <h3>Descripción</h3>
+                        </div>
+
+                        <p>{{ evento.descripcion|safe }}</p>
+
+
+
+
+
+                        <div class="fancy-title title-border title-center">
+                            <h3>Ubicación</h3>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ evento.ubicacion.imagen_ubicacion.url }}" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ evento.ubicacion.nombre }}</h5></br>
+                                        <ul class="iconlist mb-0">
+                                            
+                                            
+                                            <li><i class="icon-map-marker2"></i> {{ evento.ubicacion.direccion }} , {{ evento.ubicacion.codigo_postal }}</li>
+                                            <li><i class="icon-phone3"></i> {{ evento.ubicacion.telefono }}</li>
+                                            <li><i class="icon-world"></i><a href="{{ evento.ubicacion.web }}"> {{ evento.ubicacion.web }} </a></li>
+                                            <li><i class="icon-mail"></i> {{ evento.ubicacion.correo_electronico }}</li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="fancy-title title-border title-center">
+                            <h3>Asistentes</h3>
+                        </div>
+
+                        <div id="oc-team" class="owl-carousel team-carousel bottommargin carousel-widget"
+                            data-margin="50" data-pagi="false" data-items-sm="2" data-items-md="2" data-items-xl="4">
+
+                            {% for miembro in evento.participantes.all %}
+
+                            <div class="oc-item">
+                                <div class="team">
+                                    <div class="team-image">
+                                        <a href="{% url 'mostrar_perfil_usuario' miembro.user.perfil.id  %}"><img
+                                                src="{{ miembro.imagen_perfil.url }}"
+                                                alt="{{ miembro.user.first_name }} {{ miembro.user.last_name }}"></a>
+                                    </div>
+                                    <div class="team-desc">
+                                        <div class="team-title">
+                                            <h4>{{ miembro.user.first_name }} {{ miembro.user.last_name }}</h4><span>{{ miembro.rol }}</span>
+                                        </div>
+                                        <a href="{{ miembro.facebook_url }}"
+                                            class="social-icon inline-block si-small si-light si-rounded si-facebook">
+                                            <i class="icon-facebook"></i>
+                                            <i class="icon-facebook"></i>
+                                        </a>
+                                        <a href="{{ miembro.twitter_url }}"
+                                            class="social-icon inline-block si-small si-light si-rounded si-twitter">
+                                            <i class="icon-twitter"></i>
+                                            <i class="icon-twitter"></i>
+                                        </a>
+                                        <a href="{{ miembro.instagram_url }}"
+                                            class="social-icon inline-block si-small si-light si-rounded si-gplus">
+                                            <i class="icon-gplus"></i>
+                                            <i class="icon-gplus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section><!-- #content end -->
+
+
+
+{% endblock %}

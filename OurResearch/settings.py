@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
+    'phonenumber_field',
     'taggit',
     'noticias',
     'miembros',
+    'eventos',
 ]
 
 TAGGIT_CASE_INSENSITIVE = True

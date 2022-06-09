@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('noticias.urls')),
+    path('eventos/', include('eventos.urls')),
     # Este path es necesario para Django
     path('miembros/', include('django.contrib.auth.urls')),
     path('miembros/', include('miembros.urls')),
