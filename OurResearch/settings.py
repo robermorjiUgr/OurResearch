@@ -44,10 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'phonenumber_field',
+    'django_social_share',
     'taggit',
     'noticias',
     'miembros',
     'eventos',
+    'proyectos',
 ]
 
 TAGGIT_CASE_INSENSITIVE = True
@@ -67,7 +69,7 @@ ROOT_URLCONF = 'OurResearch.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], # new
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 'django.template.context_processors.request',
             ],
         },
     },
