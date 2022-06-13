@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+{{ publicacion.titulo }}
+{% endblock %}
+
+{% block cabeceraContenido %}
+<!-- Page Title
+		============================================= -->
+
+
+{% endblock %}
+
+{% block contenido %}
+
+<div class="row col-sm-7 mb-7 mb-sm-7 mx-auto ">
+
+    <h1 class="display-6">
+        {{ publicacion.titulo }}
+
+    </h1>
+
+
+
+
+    <div class="entry-meta">
+        <div class="row">
+            <div class="col-10">
+                <ul>
+                    {% for autor in publicacion.participantes.all %}
+                    <li>
+                        <a href="{% url 'mostrar_perfil_usuario' autor.id  %}"
+                            class="nott  text-reset fw-extralight text-decoration-underline">{{ autor.user.first_name }}
+                            {{ autor.user.last_name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col ">
+                <ul>
+                    <li>
+                        {{ publicacion.fecha_publicacion|date:"F Y" }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </br>
+        <div class="entry-image">
+            <a href="#"><img src="{{ publicacion.imagen_principal.url }}" alt="Blog Single"></a>
+        </div>
+
+
+        <div class="row col-sm-4 mb-4 mb-sm-4 mx-auto">
+
+            <a href="{{publicacion.archivo.url}}"
+                class="button button-rounded button-reveal button-large button-border text-center"><i
+                    class="icon-line-download"></i><span>Descargar PDF</span></a>
+
+
+
+        </div>
+
+
+        <h3>Resumen</h3>
+
+
+        {{ publicacion.resumen|safe }}
+
+
+        <div class="tagcloud clearfix bottommargin">
+
+            {% for tag in publicacion.tags.all %}
+            <a href="{% url 'etiqueta' tag.slug %}">{{ tag.slug }} </a>
+            {% endfor %}
+
+        </div>
+
+        <div class="fancy-title title-border title-center">
+            <h3> Participantes </h3>
+        </div>
+
+        <ul class="testimonials-grid grid-1 grid-md-1">
+            {% for autor in publicacion.participantes.all %}
+
+            <li class="grid-item ">
+                <div class="testimonial row">
+                    <div class="testi-image col-1">
+                        <a href="{% url 'mostrar_perfil_usuario' autor.id  %}"><img src="{{ autor.imagen_perfil.url }}"
+                                alt="{{ autor.user.first_name }}
+                            {{ autor.user.last_name }}"></a>
+                    </div>
+                    <div class="col-8">
+                        <p>{{ autor.cita }}</p>
+                        <div class="testi-meta ">
+                            {{ autor.user.first_name }}
+                            {{ autor.user.last_name }}
+                            <span>{{ autor.rol }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="social-icon si-dark si-small si-facebook">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon si-dark si-small si-twitter">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon si-dark si-small si-instagram">
+                            <i class="icon-instagram"></i>
+                            <i class="icon-instagram"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        </br>
+        <!--
+        <h3>Relacionados</h3>
+        
+        {% for publicacion in publicaciones_relacionadas %}
+
+        <div class="card">
+
+            <div class="card-body text-larger">
+                <p class="card-text"><i class="icon-file-alt2"></i>&nbsp&nbsp&nbsp<a
+                        href="{% url 'publicacion-detallada' publicacion.slug %}"> {{ publicacion.titulo }} </a>.</p>
+            </div>
+
+
+            <div class="card-footer">
+
+                {% for autor in publicacion.participantes.all %}
+                <a href="{% url 'mostrar_perfil_usuario' autor.id  %}"
+                    class="nott  text-reset fw-extralight text-decoration-underline">{{ autor.user.first_name }} {{
+                    autor.user.last_name }}</a>,&nbsp
+                {% endfor %}
+                ({{ publicacion.fecha_publicacion.year }}).
+            </div>
+        </div>
+
+        {% endfor %}
+        -->
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'noticias',
     'miembros',
     'eventos',
+    'publicaciones',
     'proyectos',
 ]
 

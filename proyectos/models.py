@@ -18,9 +18,9 @@ class Proyecto(models.Model):
     fecha_creacion = models.DateTimeField(editable=False)
     fecha_actualizado = models.DateTimeField(blank=True, null=True)
 
-    def get_absolute_url(self):
+    #def get_absolute_url(self):
 
-        return reverse("list", args=[self.id])
+    #    return reverse("list", args=[self.id])
     
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''

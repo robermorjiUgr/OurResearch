@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('noticias.urls')),
     path('eventos/', include('eventos.urls')),
+    path('publicaciones/', include('publicaciones.urls')),
     path('proyectos/', include('proyectos.urls')),
     # Este path es necesario para Django
     path('miembros/', include('django.contrib.auth.urls')),
