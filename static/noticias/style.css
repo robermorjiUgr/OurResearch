@@ -9383,15 +9383,15 @@ body:not(.device-touch) .button.button-full strong {
 	border-color: #C02942;
 }
 
-.button-teal:not(.button-border) { background-color: #53777A !important; }
+.button-teal:not(.button-border) { background-color: #BFBDFC !important; }
 .button-3d.button-teal:hover,
 .button-reveal.button-teal:hover,
 .button-border.button-teal:hover,
-.button-border.button-teal.button-fill::before { background-color: #53777A !important; }
+.button-border.button-teal.button-fill::before { background-color: #BFBDFC !important; }
 
 .button-border.button-teal {
-	color: #53777A;
-	border-color: #53777A;
+	color: #523FAF;
+	border-color: #523FAF;
 }
 
 .button-light.button-yellow:not(.button-border) { background-color: #ECD078 !important; }
@@ -9497,15 +9497,15 @@ body:not(.device-touch) .button.button-full strong {
 	border-color: #1693A5;
 }
 
-.button-blue:not(.button-border) { background-color: #1265A8 !important; }
+.button-blue:not(.button-border) { background-color: #BFBDFC !important; }
 .button-3d.button-blue:hover,
 .button-reveal.button-blue:hover,
 .button-border.button-blue:hover,
-.button-border.button-blue.button-fill::before { background-color: #1265A8 !important; }
+.button-border.button-blue.button-fill::before { background-color: #BFBDFC !important; }
 
 .button-border.button-blue {
-	color: #1265A8;
-	border-color: #1265A8;
+	color: #523FAF;
+	border-color: #523FAF;
 }
 
 .button-amber:not(.button-border) { background-color: #EB9C4D !important; }
@@ -12373,7 +12373,7 @@ body:not(.device-touch) .rounded-skill {
 	left: 0;
 	width: 0;
 	height: 100%;
-	background-color: #1ABC9C;
+	background-color: #523FAF;
 	overflow: visible !important;
 	border-radius: 2px;
 	-webkit-transition: width 1.2s ease-in-out;
@@ -12913,7 +12913,7 @@ blockquote.float-end {
 	--owl-nav-sizes: 36px;
 	--owl-dots-gutters: 4px;
 	--owl-dots-sizes: 8px;
-	--owl-nav-bg: var(--themecolor, #1ABC9C);
+	--owl-nav-bg: var(--themecolor, #523FAF);
 	--owl-nav-margin: calc(var(--owl-nav-sizes) / -2);
 	--owl-nav-with-dots: calc( var(--owl-nav-margin) - calc( calc( 30px + var(--owl-dots-sizes) ) / 2 ) );
 }
@@ -14307,7 +14307,7 @@ body:not(.device-touch) #gotoTop {
 
 #footer {
 	position: relative;
-	background-color: #EEE;
+	background-color: #523FAF;
 	border-top: 5px solid rgba(0,0,0,0.2);
 }
 
@@ -14338,7 +14338,7 @@ body:not(.device-touch) #gotoTop {
 
 #copyrights {
 	padding: 40px 0;
-	background-color: #DDD;
+	background-color: #523FAF;
 	font-size: 0.875rem;
 	line-height: 1.8;
 }

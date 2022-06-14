@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 class PublicacionesView(ListView):
     model = Publicacion
     template_name = 'publicaciones.html'
-    #ordering = ['-fecha_evento']
+    ordering = ['-fecha_publicacion']
 
 class PublicacionDetalladaView(DetailView):
     model = Publicacion

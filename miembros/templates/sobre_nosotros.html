@@ -9,11 +9,55 @@ Miembros
 
 {% block contenido %}
 
-<div class="fancy-title title-border">
-    <h3>Nuestro equipo</h3>
+<div class="row col-mb-80 mb-0">
+
+    <div class="col-12">
+
+        <div class="heading-block center border-bottom-0">
+            <h2>Conoce a nuestro equipo</h2>
+            <span>Valoramos la ética del trabajo, ya que ayuda a crear un grupo de reflexión creativo.</span>
+        </div>
+
+
+    </div>
+
+    <div class="col-10 mx-auto">
+        <a href="#"><img src="{% static 'noticias/images/sobre_nosotros.jpg' %}" alt="Noticia detallada" ></a>
+    </div>
+
+    <div class="col-lg-3 center" data-animate="bounceIn">
+        <i class="i-plain i-xlarge mx-auto mb-0 icon-news"></i>
+        <div class="counter counter-large" style="color: #3498db;"><span data-from="0" data-to="{{ total_noticias }}" data-refresh-interval="50" data-speed="2000"></span></div>
+        <h5>Noticias publicadas</h5>
+    </div>
+
+    <div class="col-lg-3 center" data-animate="bounceIn" data-delay="200">
+        <i class="i-plain i-xlarge mx-auto mb-0 icon-ticket"></i>
+        <div class="counter counter-large" style="color: #e74c3c;"><span data-from="0" data-to="{{ total_eventos }}" data-refresh-interval="50" data-speed="2500"></span></div>
+        <h5>Eventos realizados</h5>
+    </div>
+
+    <div class="col-lg-3 center" data-animate="bounceIn" data-delay="400">
+        <i class="i-plain i-xlarge mx-auto mb-0 icon-paper-clip"></i>
+        <div class="counter counter-large" style="color: #16a085;"><span data-from="0" data-to="{{ total_publicaciones }}" data-refresh-interval="50" data-speed="3500"></span></div>
+        <h5>Artículos publicados</h5>
+    </div>
+
+    <div class="col-lg-3 center" data-animate="bounceIn" data-delay="600">
+        <i class="i-plain i-xlarge mx-auto mb-0 icon-line2-eyeglasses"></i>
+        <div class="counter counter-large" style="color: #9b59b6;"><span data-from="0" data-to="{{ total_proyectos }}" data-refresh-interval="30" data-speed="2700"></span></div>
+        <h5>Proyectos desarrolados</h5>
+    </div>
+
 </div>
 
-<div class="row col-mb-50 mb-0">
+
+<div class="heading-block center">
+    <h2>Grupo OurResearch</h2>
+    <span>Los miembros de nuestro equipo que han contribuido enormemente a nuestro crecimiento</span>
+</div>
+
+<div class="row">
     {% for miembro in object_list %}
 
         <div class="col-lg-6">
@@ -48,7 +92,22 @@ Miembros
         </div>
 
     {% endfor %}
+    
+
+    
 
 </div>
 
+</div>
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
+

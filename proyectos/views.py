@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 class ProyectosView(ListView):
     model = Proyecto
     template_name = 'proyectos.html'
-    #ordering = ['-fecha_evento']
+    ordering = ['-fecha_actualizado']
 
 class ProyectoDetalladoView(DetailView):
     model = Proyecto

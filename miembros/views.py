@@ -8,6 +8,9 @@ from .models import  Perfil
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from noticias.models import Noticia
+from eventos.models import Evento
+from publicaciones.models import Publicacion
+from proyectos.models import Proyecto
 
 class MostrarPaginaPerfilView(DetailView):
     model = Perfil
@@ -64,3 +67,11 @@ def UserEditView(request):
 class SobreNosotrosView(ListView):
     model = Perfil
     template_name = 'sobre_nosotros.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SobreNosotrosView, self).get_context_data(**kwargs)
+        context['total_noticias'] = Noticia.objects.count()
+        context['total_eventos'] = Evento.objects.count()
+        context['total_publicaciones'] = Publicacion.objects.count()
+        context['total_proyectos'] = Proyecto.objects.count()
+        return context

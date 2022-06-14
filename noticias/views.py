@@ -6,6 +6,8 @@ from .models import  Noticia
 from .forms import NoticiaForm, EditarNoticiaForm
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
+from eventos.models import Evento
+from publicaciones.models import Publicacion
 
 #def home(request):
 #   return render(request, 'home.html', {})
@@ -13,6 +15,14 @@ from django.shortcuts import get_object_or_404
 class HomeView(ListView):
     model = Noticia
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['noticias_recientes'] = Noticia.objects.all().order_by('-fecha_publicacion')[0:6]
+        context['eventos_proximos'] = Evento.objects.all().order_by('-fecha_evento')[0:6]
+        context['publicaciones_recientes'] = Publicacion.objects.all().order_by('-fecha_publicacion')[0:6]
+        return context
 
 
 class NoticiasView(ListView):

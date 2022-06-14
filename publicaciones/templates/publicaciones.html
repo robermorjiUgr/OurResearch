@@ -24,10 +24,11 @@ Publicaciones
 
 {% block contenido %}
 
+
     {% for publicacion in object_list %}
+    <div class="clear mt-5"></div>
 
     <div class="card">
-        
             <div class="card-body text-larger">
                 <p class="card-text"><i class="icon-file-alt2"></i>&nbsp&nbsp&nbsp<a href="{% url 'publicacion-detallada' publicacion.slug %}"> {{ publicacion.titulo }} </a>.</p>
             </div>

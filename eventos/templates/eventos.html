@@ -52,13 +52,21 @@ Eventos
                                 </ul>
                             </div>
                             <div class="entry-content">
-                                {{ evento.descripcion|slice:":350"|safe }}... </br>
+                                {{ evento.descripcion|slice:":350"|safe }} ... </br>
                             </div>
-                            <a href="{% url 'evento-detallado' evento.id %}" class="btn btn-danger">Leer más</a>
+                        
+
+                            <div class="entry-content">
+                                <a href="{% url 'evento-detallado' evento.id %}" class="button button-border button-border-thin button-teal">Leer más</a>
+                            </div>
 
                         </div>
+                        
+
                     </div>
+
                 </div>
+                
 
                 {% endfor %}
 
