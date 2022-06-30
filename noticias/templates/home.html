@@ -3,11 +3,15 @@
 {% load static %}
 
 
+
+
 {% block tituloDePagina %}
 Home
 {% endblock %}
 
+{% if noticias_recientes.length > 0 %}
 {% block cabeceraContenido %}
+
 
 <!-- Slider
 		============================================= -->
@@ -181,3 +185,5 @@ Home
 
 
 {% endblock %}
+
+{% endif %}
