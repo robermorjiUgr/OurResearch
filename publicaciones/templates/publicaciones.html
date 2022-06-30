@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+Publicaciones
+{% endblock %}
+
+{% block cabeceraContenido %}
+<!-- Page Title
+		============================================= -->
+<section id="page-title" class="page-title-pattern">
+
+    <div class="container clearfix">
+        <h1>Publicaciones</h1>
+        <span>Artículos científicos publicados
+        </span>
+    </div>
+
+</section><!-- #page-title end -->
+
+{% endblock %}
+
+{% block contenido %}
+
+
+    {% for publicacion in object_list %}
+    <div class="clear mt-5"></div>
+
+    <div class="card">
+            <div class="card-body text-larger">
+                <p class="card-text"><i class="icon-file-alt2"></i>&nbsp&nbsp&nbsp<a href="{% url 'publicacion-detallada' publicacion.slug %}"> {{ publicacion.titulo }} </a>.</p>
+            </div>
+        
+        
+        <div class="card-footer">
+
+            {% for autor in publicacion.participantes.all %}
+                <a href="{% url 'mostrar_perfil_usuario' autor.id  %}" class="nott  text-reset fw-extralight text-decoration-underline" >{{ autor.user.first_name }} {{ autor.user.last_name }}</a>,&nbsp 
+            {% endfor %}
+            ({{ publicacion.fecha_publicacion.year }}).
+        </div>
+    </div>  
+
+    {% endfor %}
+
+
+
+
+
+
+
+{% endblock %}

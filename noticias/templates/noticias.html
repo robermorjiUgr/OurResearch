@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+    Noticias
+{% endblock %}
+
+{% block cabeceraContenido %}
+<!-- Page Title
+		============================================= -->
+<section id="page-title" class="page-title-pattern">
+
+    <div class="container clearfix">
+        <h1>Noticias</h1>
+        <span>Artículos de interés científico y divulgativo</span>
+    </div>
+
+</section><!-- #page-title end -->
+
+{% endblock %}
+
+
+
+{% block contenido %}
+
+
+<div id="posts" class="post-grid row grid-container gutter-40 clearfix" data-layout="fitRows">
+    {% for noticia in object_list %}
+
+    <div class="entry col-md-4 col-sm-6 col-12">
+        <div class="grid-inner">
+            <div class="entry-image">
+                <a href="{{ noticia.imagen_principal.url }}" data-lightbox="image"><img
+                        src="{{ noticia.imagen_principal.url }}"
+                        alt="Standard Post with Image"></a>
+            </div>
+            <div class="entry-title">
+                <h2><a href="{% url 'noticia-detallada' noticia.slug %}"> {{ noticia.titulo }} </a></h2>
+            </div>
+            <div class="entry-meta">
+                <ul>
+                    <li><i class="icon-calendar3"></i> {{ noticia.fecha_publicacion }} </li>
+                    <li><a href="{% url 'mostrar_perfil_usuario' noticia.autor.perfil.id  %}"><i class="
+                        icon-male"></i>
+                        {{ noticia.autor.first_name }} 
+                        {{ noticia.autor.last_name }}</a></li>
+                    <!-- <li><a href="#"><i class="icon-camera-retro"></i></a></li> -->
+                </ul>
+            </div>
+            <div class="entry-content">
+                <p>{{ noticia.fragmento }}</p>
+                <a href="{% url 'noticia-detallada' noticia.slug %}" class="more-link">Leer más</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+
+</div><!-- #posts end -->
+
+
+
+
+
+{% endblock %}

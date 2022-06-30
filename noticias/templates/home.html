@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+Home
+{% endblock %}
+
+{% block cabeceraContenido %}
+
+<!-- Slider
+		============================================= -->
+<section id="slider" class="slider-element "
+    style="background: #F9F9F9 url('{% static 'noticias/images/inicio.png' %}') no-repeat 90% 35% /  35%; padding: 100px 0  180px">
+
+    <div class="container position-relative clearfix" style="z-index: 1">
+
+        <div class="row mt-0 mt-md-5 clearfix">
+            <div class="col-lg-6 my-5 my-md-0">
+                <div class="heading-block border-bottom-0 bottommargin-sm">
+                    <h5 class="text-uppercase ls4 text-black-50 fw-light mb-2" data-animate="fadeInUp" data-delay="100">
+                        Developer</h5>
+                    <h2 class="fw-bold nott font-secondary" data-animate="fadeInUp" data-delay="200"
+                        style="font-size: 58px; line-height: 1.15; letter-spacing: -1px; color: #523FAF">Analizando
+                        nuestro futuro.</h2>
+                </div>
+                <p class="mb-5 lead" data-animate="fadeInUp" data-delay="400" style="line-height: 1.7;">A través de la
+                    investigación y la divulgación científica.</p>
+            </div>
+        </div>
+    </div>
+    <div style="height: 100px"></div>
+    <div class="video-wrap d-lg-none position-absolute" style="height: 100%; z-index: 0; top:0">
+        <div class="video-overlay" style="background: rgba(255,255,255,0.8);"></div>
+    </div>
+
+    
+
+</section><!-- #slider end -->
+
+
+{% endblock %}
+
+{% block contenido %}
+
+
+
+        <div class="container clearfix fancy-title title-border title-center">
+            <h1>Noticias</h1>
+        </div>
+
+
+        <div id="oc-posts" class="owl-carousel posts-carousel carousel-widget posts-md data-nav" data-pagi="false"
+            data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+
+
+
+            {% for noticia in noticias_recientes %}
+            <div class="oc-item">
+                <div class="entry">
+                    <div class="entry-image">
+                        <a href="{% url 'noticia-detallada' noticia.slug %}" data-lightbox="image"><img
+                                src="{{ noticia.imagen_principal.url }}" alt="{{ noticia.titulo }}"></a>
+                    </div>
+                    <div class="entry-title title-xs nott">
+                        <h3><a href="{% url 'noticia-detallada' noticia.slug %}">{{ noticia.titulo }}</a></h3>
+                    </div>
+                    <div class="entry-meta">
+                        <ul>
+                            <li><i class="icon-calendar3"></i> {{ noticia.fecha_publicacion }} </li>
+                            <li><a href="{% url 'mostrar_perfil_usuario' noticia.autor.perfil.id  %}"><i class="
+                            icon-male"></i>
+                                    {{ noticia.autor.first_name }}
+                                    {{ noticia.autor.last_name }}</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="entry-content">
+                        <p>{{ noticia.fragmento }}</p>
+                        <a href="{% url 'noticia-detallada' noticia.slug %}" class="more-link">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+
+        <div class="clear mt-5"></div>
+
+
+        <div class="container clearfix fancy-title title-border title-center">
+            <h1>Eventos</h1>
+        </div>
+
+
+        <div id="oc-posts" class="owl-carousel posts-carousel carousel-widget posts-md data-nav" data-pagi="false"
+            data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+
+
+
+            {% for evento in eventos_proximos %}
+            <div class="oc-item">
+                <div class="entry">
+                    <div class="entry-image">
+                        <a href="{% url 'evento-detallado' evento.id %}" data-lightbox="image"><img
+                                src="{{ evento.imagen_evento.url }}" alt="{{ evento.nombre }}"></a>
+                    </div>
+                    <div class="entry-title title-xs nott">
+                        <h3><a href="{% url 'evento-detallado' evento.id %}">{{ evento.nombre }}</a></h3>
+                    </div>
+                    <div class="entry-meta">
+                        <ul>
+                            <li><i class="icon-calendar3"></i> {{ evento.fecha_evento|date:"d F Y" }} </li>
+                            
+
+                        </ul>
+                    </div>
+                    <div class="entry-content">
+                        <p>{{ evento.descripcion|safe|slice:"150" }}...</p>
+                        <a href="{% url 'evento-detallado' evento.id %}" class="more-link">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+
+        <div class="clear mt-5"></div>
+
+        <div class="container clearfix fancy-title title-border title-center">
+            <h1>Publicaciones</h1>
+        </div>
+
+
+        <div id="oc-posts" class="owl-carousel posts-carousel carousel-widget posts-md data-nav" data-pagi="false"
+            data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+
+
+
+            {% for publicacion in publicaciones_recientes %}
+            <div class="oc-item">
+                <div class="entry">
+                    <div class="entry-image">
+                        <a href="{% url 'publicacion-detallada' publicacion.slug %}" data-lightbox="image"><img
+                                src="{{ publicacion.imagen_principal.url }}" alt="{{ publicacion.titulo }}"></a>
+                    </div>
+                    <div class="entry-title title-xs nott">
+                        <h3><a href="{% url 'publicacion-detallada' publicacion.slug %}">{{ publicacion.titulo }}</a>
+                        </h3>
+                    </div>
+                    <div class="entry-meta">
+                        <ul>
+                            <li><i class="icon-calendar3"></i> {{ publicacion.fecha_publicacion }} </li>
+
+                        </ul>
+                    </div>
+                    <div class="entry-content">
+                        <p>{{ publicacion.resumen|safe|slice:"150" }}...</p>
+                        <a href="{% url 'publicacion-detallada' publicacion.slug %}" class="more-link">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+
+        <div class="clear mt-5"></div>
+
+
+    
+
+    
+
+
+
+{% endblock %}

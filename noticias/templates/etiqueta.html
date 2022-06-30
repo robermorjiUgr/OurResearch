@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+    Etiqueta
+{% endblock %}
+
+
+
+{% block contenido %}
+
+{% if noticias_etiqueta %}
+
+
+
+
+
+
+<div class="container clearfix">
+    <h1>Etiqueta "{{ nombre }}"</h1>
+</div>
+
+
+
+<div id="posts" class="post-grid row grid-container gutter-40 clearfix" data-layout="fitRows">
+    {% for noticia in noticias_etiqueta %}
+
+    <div class="entry col-md-4 col-sm-6 col-12">
+        <div class="grid-inner">
+            <div class="entry-image">
+                <a href="{{ noticia.imagen_principal.url }}" data-lightbox="image"><img
+                        src="{{ noticia.imagen_principal.url }}"
+                        alt="Imagen de noticia"></a>
+            </div>
+            <div class="entry-title">
+                <h2><a href="{% url 'noticia-detallada' noticia.slug %}"> {{ noticia.titulo }} </a></h2>
+            </div>
+            <div class="entry-meta">
+                <ul>
+                    <li><i class="icon-calendar3"></i> {{ noticia.fecha_publicacion }} </li>
+                    <li><a href="blog-single.html#comments"><i class="icon-comments"></i>
+                        {{ noticia.autor.first_name }} 
+                        {{ noticia.autor.last_name }} </a></li>
+                    <!-- <li><a href="#"><i class="icon-camera-retro"></i></a></li> -->
+                </ul>
+            </div>
+            <div class="entry-content">
+                <p>{{ noticia.fragmento }}</p>
+                <a href="{% url 'noticia-detallada' noticia.slug %}" class="more-link">Leer más</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+
+</div>
+{% else %}
+    <h1>Lo sentimos, no existen noticias con la etiqueta "{{ nombre }}"</h1>
+{% endif %}
+
+</br></br>
+
+<a href="{% url 'home'  %}">Inicio</a>
+
+
+{% endblock %}

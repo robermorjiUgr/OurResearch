@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="Miguel Reyes Martínez" content="OurResearch" />
+
+    <!-- Stylesheets PLANTILLA PARA INTRODUCIR DATOS - {% static 'noticias/css/colors.css' %}
+        ============================================= -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
+        rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/css/dark.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/css/et-line.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/css/font-icons.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/css/animate.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'noticias/css/magnific-popup.css' %}" type="text/css" />
+
+    <link rel="stylesheet" href="{% static 'noticias/css/custom.css' %}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Here goes your colors.css ============================================= -->
+	<link rel="stylesheet" href="{% static 'noticias/css/colors.css' %}" type="text/css" />
+
+    <!-- Titulo de la página ============================================= -->
+    <title>
+        Our Research -
+        {% block tituloDePagina %}
+        {% endblock %}
+    </title>
+
+</head>
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+        ============================================= -->
+    <div id="wrapper" class="clearfix">
+
+        <!-- Header
+            ============================================= -->
+        <header id="header" class="full-header transparent-header">
+            <div id="header-wrap">
+                <div class="container">
+                    <div class="header-row">
+
+                        <!-- Logo {% static 'noticias/images/shop/small/6.jpg' %}
+                            ============================================= -->
+                        <div id="logo">
+                            <a href="{% url 'home' %}" class="standard-logo"
+                                data-dark-logo="{% static 'noticias/images/logo-dark.png' %}"><img
+                                    src="{% static 'noticias/images/logo.png' %}" alt="Canvas Logo"></a>
+                            <a href="{% url 'home' %}" class="retina-logo"
+                                data-dark-logo="{% static 'noticias/images/logo-dark@2x.png' %}"><img
+                                    src="{% static 'noticias/images/logo@2x.png' %}" alt="Canvas Logo"></a>
+                        </div><!-- #logo end -->
+
+
+                        <div id="primary-menu-trigger">
+                            <svg class="svg-trigger" viewBox="0 0 100 100">
+                                <path
+                                    d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+                                </path>
+                                <path d="m 30,50 h 40"></path>
+                                <path
+                                    d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <!-- Barra de navegacion
+                            ============================================= -->
+                        <nav class="primary-menu">
+
+                            <ul class="menu-container">
+                                <li class="menu-item">
+                                    <a class="menu-link" href="/noticias">
+                                        <div>Noticias</div>
+                                    </a>
+                                    {% if user.is_authenticated %}
+                                    <ul class="sub-menu-container">
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'add-noticia' %}">
+                                                <div>Añadir noticia</div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    {% endif %}
+
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'sobre-nosotros' %}">
+                                        <div>Miembros</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item mega-menu">
+                                    <a class="menu-link" href="{% url 'listado-eventos' %}">
+                                        <div>Eventos</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item mega-menu">
+                                    <a class="menu-link" href="{% url 'listado-publicaciones' %}">
+                                        <div>Publicaciones</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item mega-menu">
+                                    <a class="menu-link" href="{% url 'listado-proyectos' %}">
+                                        <div>Proyectos</div>
+                                    </a>
+                                </li>
+
+                                {% if user.is_authenticated and user.id != user.is_superuser %}
+
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'mostrar_perfil_usuario' user.perfil.id  %}">
+                                        <div>Mi perfil</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'logout' %}">
+
+                                        <div class="menu-item mega-menu">
+                                            <div><i class="icon-power-off"></i></div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                {% else %}
+                                <div class="menu-item mega-menu">
+                                    <a class="menu-link" href="{% url 'login' %}">
+                                        <div>Login</div>
+                                    </a>
+                                </div>
+                                {% endif %}
+
+                            </ul>
+
+                        </nav><!-- Fin de barra de navegación  -->
+
+                        {% if user.is_authenticated %} <!-- CONTINUAR AQUÍ, CAMBIAR COMO ACCEDER A EDITAR EL PERFIL  -->
+                        <div class="menu-item mega-menu">
+                            <a class="menu-link" href="{% url 'editar-perfil' %}">
+                                <div>¡Hola, {{ user.first_name }}!</div>
+                            </a>
+                        </div>
+                        {% endif %}
+
+
+
+                        <form class="top-search-form" action="search.html" method="get">
+                            <input type="text" name="q" class="form-control" value=""
+                                placeholder="Type &amp; Hit Enter.." autocomplete="off">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-wrap-clone"></div>
+        </header><!-- #header end -->
+
+        <!-- Titulo de página
+            ============================================= -->
+
+        <!-- Mensaje de error ============================================= -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+
+        
+        <!-- Fin de titulo de página -->
+
+        {% block cabeceraContenido %}
+
+
+        {% endblock %}
+
+        <!-- Contenido
+            ============================================= -->
+        <section id="content">
+            <div class="content-wrap ">
+                <div class="container clearfix">
+                    <!-- Posts {% static 'noticias/images/blog/grid/17.jpg' %} SEGUIR AQUI
+            ============================================= -->
+                    {% block contenido %}
+
+
+                    {% endblock %}
+                </div>
+        </section><!-- #content end -->
+
+        <!-- Footer
+            ============================================= -->
+        <footer id="footer" class="dark">
+            <div class="container">
+
+                <!-- Footer Widgets {% static 'noticias/include/subscribe.php' %}
+                    ============================================= -->
+                <div class="footer-widgets-wrap">
+
+                    <div class="row col-mb-50">
+                        <div class="col-lg-8">
+
+                            <div class="row col-mb-50">
+                                <div class="col-md-4">
+
+                                    <div class="widget clearfix">
+                                  
+
+                                        <div
+                                            style="background: url('{% static 'noticias/images/world-map.png' %}') no-repeat center center; background-size: 100%;">
+                                            <address>
+                                                <strong>Oficina:</strong><br>
+                                                C. Periodista Daniel Saucedo Aranda, s/n, 18014 Granada
+                        
+                                            </address>
+                                            <abbr title="Phone Number"><strong>Teléfono:</strong></abbr> 958 24 28 02<br>
+                                            <abbr title="Fax"><strong>Fax:</strong></abbr> +34-958242801<br>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                
+
+                                <div class="col-md-4">
+
+                                    
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                       
+                    </div>
+
+                </div><!-- .footer-widgets-wrap end -->
+
+            </div>
+
+            <!-- Copyrights
+                ============================================= -->
+            <div id="copyrights">
+                <div class="container">
+
+                    <div class="row col-mb-30">
+
+                        <div class="col-md-6 text-center text-md-start">
+                            Copyrights &copy; 2020 Todos los derechos reservados por Miguel Reyes Martínez<br>
+                            <div class="copyright-links"><a href="#">Términos de uso</a> / <a href="#">Política de
+                                    privacidad</a>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
+            </div><!-- #copyrights end -->
+        </footer><!-- #footer end -->
+
+    </div><!-- #wrapper end -->
+
+    <!-- Go To Top
+        ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts  {% static 'noticias/js/jquery.countdown-fr.js' %}
+        ============================================= -->
+    <script src="{% static 'noticias/js/jquery.js' %}"></script>
+    <script src="{% static 'noticias/js/plugins.min.js' %}"></script>
+    <script src="{% static 'noticias/js/jquery.countdown-es.js' %}"></script>
+
+    <!-- Footer Scripts
+        ============================================= -->
+        
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" ></script>
+    <script src="{% static 'noticias/js/functions.js' %}"></script>
+
+    <!-- For Countdown {% static 'js/components/moment.js' %} -->
+    <script src="{% static 'eventos/js/components/moment.js' %}"></script>
+
+</body>
+
+</html>

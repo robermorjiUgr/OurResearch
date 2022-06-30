@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block tituloDePagina %}
+    Añadir noticia
+{% endblock %}
+
+{% block contenido %}
+
+{% if user.is_authenticated %}
+
+<h1>Añadir noticia...</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-lg-12"> 
+            {{ form.media }}
+
+            <!-- Título -->
+            <div class="col-6 form-group">
+                <label>{{ form.titulo.label_tag }} </label>
+                {{ form.titulo }}
+            </div>
+
+            <!-- Imagen -->
+            
+            <div class="form-group">
+                <label>Imagen de portada: </label> </br>
+                {{ form.imagen_principal }}
+            </div>
+
+            <!-- Autor -->
+            <div class="col-3 form-group">
+                
+                {{ form.autor }}
+            </div>
+
+            <!-- Tags -->
+            <div class="col-3 form-group">
+                <label>{{ form.tags.label_tag }} </label>
+                {{ form.tags }}
+            </div>
+
+            <!-- Fragmento  -->
+            <div class="col-6 form-group">
+                <label>{{ form.fragmento.label_tag }} </label>
+                {{ form.fragmento }}
+            </div>
+
+            <!-- Cuerpo -->
+            <label>{{ form.cuerpo.label_tag }}</label>
+            <div class="form-group">
+                
+                {{ form.cuerpo }}
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary">Publicar</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("objetoAutor").value = name; 
+
+</script>
+
+{% else %}
+    <h2>Ups... ¡No deberías estar aquí!</h2>
+{% endif %}
+
+
+
+
+{% endblock %}
