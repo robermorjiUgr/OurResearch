@@ -12,6 +12,14 @@ db.sqlite3
 !**/migrations/__init__.py
 /noticias/__init__.py
 /noticias/migrations/__init__.py
+/miembros/__init__.py
+/miembros/migrations/__init__.py
+/eventos/__init__.py
+/eventos/migrations/__init__.py
+/proyectos/__init__.py
+/proyectos/migrations/__init__.py
+/publicaciones/__init__.py
+/publicaciones/migrations/__init__.py
 
 #idea
 /.idea/dataSources.xml
